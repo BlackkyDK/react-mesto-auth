@@ -22,8 +22,7 @@ function PopupWithForm({
           className={`popup__form popup__form_type_${name}`}
           name={name}
           onSubmit={onSubmit}
-          noValidate
-        >
+          >
           {children}
           <button
             type="submit"

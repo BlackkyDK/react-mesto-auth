@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import { useHistory, Switch, Route, Redirect } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
@@ -26,7 +26,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [email, setEmail] = useState("");
   const [isSuccess, setIsSuccess] = useState(true);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState();
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
 
@@ -158,15 +158,22 @@ function App() {
   }
 
   function checkToken() {
-    if (localStorage.getItem("jwt")) {
-      let jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
       setIsSuccess(true);
-      auth.checkToken(jwt).then((res) => {
-        console.log("token: ", res);
-        setEmail(res.data.email);
-        setLoggedIn(true);
-        history.push("/");
-      });
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          console.log("token: ", res);
+          setEmail(res.data.email);
+          setLoggedIn(true);
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log("err:", err);
+          setIsSuccess(false);
+          setIsInfoTooltipOpen(true);
+        });
     }
   }
 
@@ -210,7 +217,13 @@ function App() {
           <Route path="/sign-in">
             <Login handleLogin={handleLogin} />
           </Route>
+
+          <Route>
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+          </Route>
+
         </Switch>
+        
         {loggedIn && <Footer />}
 
         <InfoTooltip
