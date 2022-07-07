@@ -48,6 +48,10 @@ self.__precacheManifest = [
     "url": "/mesto-react-auth/static/media/Inter-Medium.3a5b9a96.woff"
   },
   {
+    "revision": "6db365aeaea05fb00f0541bb88b39dec",
+    "url": "/mesto-react-auth/static/media/Inter-Black.6db365ae.woff"
+  },
+  {
     "revision": "b2fce4ac45f3d116cd48ec8d068ab723",
     "url": "/mesto-react-auth/static/media/add.b2fce4ac.svg"
   },
@@ -66,10 +70,6 @@ self.__precacheManifest = [
   {
     "revision": "4220563aa7e7f6bb1d562a95174678b6",
     "url": "/mesto-react-auth/static/media/Trash.4220563a.svg"
-  },
-  {
-    "revision": "6db365aeaea05fb00f0541bb88b39dec",
-    "url": "/mesto-react-auth/static/media/Inter-Black.6db365ae.woff"
   },
   {
     "revision": "d8210d644a38181765fa4f68f957fe89",
